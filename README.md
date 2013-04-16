@@ -1,10 +1,10 @@
-== Human date-time parser ==
+# Human date-time parser
 
 This repository contains the HumanDateTimeParser class, that can be used to parse user-entered localized and fuzzy date-times.
 
 You can test the class by using the **humandatetime** program. Pass it a single quoted argument containing what you want to parse. For instance, `./humandatetime "two days ago"`.
 
-=== Locale-specific settings ===
+## Locale-specific settings
 
 Locale-specific parsing can be configured by using XML files. They contain three sections :
 
