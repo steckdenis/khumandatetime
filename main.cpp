@@ -16,7 +16,7 @@
    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
    Boston, MA 02110-1301, USA.
 */
-#include "humandatetimeparser.h"
+#include "khumandatetimeparser.h"
 
 #include <QtDebug>
 
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
     if (argc != 2)
         return 0;
 
-    HumanDateTimeParser parser;
+    KHumanDateTimeParser parser;
 
     qDebug() << parser.parse(argv[1]);
 }

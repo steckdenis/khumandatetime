@@ -17,7 +17,7 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include "humandatetimeparser.h"
+#include "khumandatetimeparser.h"
 
 #include <kdebug.h>
 #include <KDE/KLocale>
@@ -192,7 +192,7 @@ struct DateTimeDelta
 
 } // namespace
 
-struct HumanDateTimeParser::Private
+struct KHumanDateTimeParser::Private
 {
     KLocale *locale;                /*!< @brief Locale to be used for parsing */
     QRegExp wordSplit;              /*!< @brief Regular expression used to split words (this regular expression is replaced by a space in the input text) */
@@ -215,7 +215,7 @@ struct HumanDateTimeParser::Private
 /*
  * HumanDateTimeParser
  */
-HumanDateTimeParser::HumanDateTimeParser(KLocale *locale)
+KHumanDateTimeParser::KHumanDateTimeParser(KLocale *locale)
 : d(new Private)
 {
     d->locale = locale;
@@ -248,7 +248,7 @@ HumanDateTimeParser::HumanDateTimeParser(KLocale *locale)
     d->loadRules(doc, period_hash, value_hash);
 }
 
-HumanDateTimeParser::~HumanDateTimeParser()
+KHumanDateTimeParser::~KHumanDateTimeParser()
 {
     qDeleteAll(d->rules);
     qDeleteAll(d->operations);
@@ -271,7 +271,7 @@ static void _handle_time(QDateTime &time, const Field &f, int multiplier, bool h
     }
 }
 
-QDateTime HumanDateTimeParser::parse(const QString &string, const QDateTime &reference)
+QDateTime KHumanDateTimeParser::parse(const QString &string, const QDateTime &reference)
 {
     DateTimeDelta delta;
 
@@ -396,7 +396,7 @@ QDateTime HumanDateTimeParser::parse(const QString &string, const QDateTime &ref
     return rs;
 }
 
-QHash<QString, Period *> HumanDateTimeParser::Private::loadPeriods(const QDomDocument& doc)
+QHash<QString, Period *> KHumanDateTimeParser::Private::loadPeriods(const QDomDocument& doc)
 {
     QDomElement period = doc.documentElement().firstChildElement("period");
     QHash<QString, Period *> period_hash;
@@ -418,7 +418,7 @@ QHash<QString, Period *> HumanDateTimeParser::Private::loadPeriods(const QDomDoc
     return period_hash;
 }
 
-QHash<QString, Value *> HumanDateTimeParser::Private::loadValues(const QDomDocument& doc)
+QHash<QString, Value *> KHumanDateTimeParser::Private::loadValues(const QDomDocument& doc)
 {
     QDomElement values = doc.documentElement().firstChildElement("values");
     QHash<QString, Value *> value_hash;
@@ -450,7 +450,7 @@ QHash<QString, Value *> HumanDateTimeParser::Private::loadValues(const QDomDocum
     return value_hash;
 }
 
-void HumanDateTimeParser::Private::loadRules(const QDomDocument& doc,
+void KHumanDateTimeParser::Private::loadRules(const QDomDocument& doc,
                                              const QHash<QString, Period *> &period_hash,
                                              const QHash<QString, Value *> &value_hash)
 {

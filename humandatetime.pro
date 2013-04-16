@@ -12,5 +12,5 @@ INCLUDEPATH += .
 LIBS += -lkdecore
 QT += xml
 
-HEADERS += humandatetimeparser.h
-SOURCES += humandatetimeparser.cpp main.cpp
+HEADERS += khumandatetimeparser.h
+SOURCES += khumandatetimeparser.cpp main.cpp

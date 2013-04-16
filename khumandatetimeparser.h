@@ -17,8 +17,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef __HUMANDATETIMEPARSER_H__
-#define __HUMANDATETIMEPARSER_H__
+#ifndef __KHUMANDATETIMEPARSER_H__
+#define __KHUMANDATETIMEPARSER_H__
 
 #include <QString>
 #include <QDateTime>
@@ -30,11 +30,11 @@ class KLocale;
 /**
  * @brief Parse a human-entered datetime
  */
-class HumanDateTimeParser
+class KHumanDateTimeParser
 {
     public:
-        HumanDateTimeParser(KLocale *locale = KGlobal::locale());
-        ~HumanDateTimeParser();
+        KHumanDateTimeParser(KLocale *locale = KGlobal::locale());
+        ~KHumanDateTimeParser();
 
         QDateTime parse(const QString &string, const QDateTime &reference = QDateTime::currentDateTime());
 
