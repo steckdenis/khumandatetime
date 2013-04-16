@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<language name="English" wordsplit="\s+" casesensitive="false">
+    <!-- Periods in this language (simple translations with metadata if needed) -->
+    <period type="year" value="10">decades?</period>
+    <period type="year">years?</period>
+    <period type="month" value="3">seasons?</period>
+    <period type="month">months?</period>
+    <period type="week">weeks?</period>
+    <period type="day">days?</period>
+    <period type="hour">hours?</period>
+    <period type="minute">minutes?</period>
+    <period type="second">seconds?</period>
+
+    <!-- Names that will be parsed as periods -->
+    <values name="month">
+        <value value="1">january</value>
+        <value value="2">february</value>
+        <value value="3">march</value>
+        <value value="4">april</value>
+        <value value="5">may</value>
+        <value value="6">june</value>
+        <value value="7">july</value>
+        <value value="8">augustus</value>
+        <value value="9">september</value>
+        <value value="10">october</value>
+        <value value="11">november</value>
+        <value value="12">december</value>
+    </values>
+    <values name="day">
+        <value value="1">monday</value>
+        <value value="2">tuesday</value>
+        <value value="3">wednesday</value>
+        <value value="4">thursday</value>
+        <value value="5">friday</value>
+        <value value="6">saturday</value>
+        <value value="7">sunday</value>
+    </values>
+    <values name="number">
+        <value value="1">one</value>
+        <value value="1">a</value>
+        <value value="1">first</value>
+        <value value="2">two</value>
+        <value value="2">second</value>
+        <value value="3">three</value>
+        <value value="4">third</value>
+    </values>
+
+    <!-- Parsing rules -->
+    <rule pattern="$number$ %period% ago">
+        <sub value="$1" />
+    </rule>
+    <rule pattern="in $number$ %period%">
+        <add value="$1" />
+    </rule>
+    <rule pattern="next %period%">
+        <add value="1"/>
+    </rule>
+    <rule pattern="last %period%">
+        <sub value="1"/>
+    </rule>
+    <rule pattern="first %period%">
+        <set value="1"/>
+    </rule>
+    <rule pattern="(?:next )?$day$">
+        <add period="week" value="1" />
+        <set period="day" value="$1" />
+    </rule>
+    <rule pattern="last $day$">
+        <sub period="week" value="1" />
+        <set period="day" value="$1" />
+    </rule>
+    <rule pattern="yesterday">
+        <sub period="day" value="1"/>
+    </rule>
+    <rule pattern="tomorrow">
+        <add period="day" value="1"/>
+    </rule>
+
+    <rule pattern="in $number$">
+        <set period="year" value="$1" />
+    </rule>
+    <rule pattern="$number$(?:th|rd|nd)? $month$ $number$">
+        <set period="day" value="$1" />
+        <set period="month" value="$2" />
+        <set period="year" value="$3" />
+    </rule>
+    <rule pattern="(?:in )?$month$ $number$">
+        <set period="month" value="$1" />
+        <set period="year" value="$2" />
+    </rule>
+    <rule pattern="(?:in )?$month$">
+        <set period="month" value="$1" />
+    </rule>
+    <rule pattern="$number$ hour">
+        <set period="hour" value="$1" />
+    </rule>
+    <rule pattern="$number$\.$number$">
+        <set period="hour" value="$1" />
+        <set period="minute" value="$2" />
+    </rule>
+    <rule pattern="pm">
+        <add period="hour" value="12"/>    <!-- Hours are in 24-hours format -->
+    </rule>
+</language>

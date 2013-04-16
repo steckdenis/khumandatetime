@@ -1,0 +1,5 @@
+humandatetime
+*.o
+*.kdev4
+*~
+Makefile
